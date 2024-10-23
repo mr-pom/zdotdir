@@ -1,14 +1,16 @@
-### .gitignore
 
-.antidote/
-.zcompcache/
-.zsh_sessions/
-.zcompdump*
-.zsh_history
-.zsh_plugins.zsh
+### .gitignore
 *.bak
 *.local
 *.local.zsh
 *.zwc
 *.zwc.old
+.antidote/
+.p10k.zsh
+.zcompcache/
+.zcompdump*
+.zplugins.zsh
+.zsh_history
+.zsh_plugins.zsh
+.zsh_sessions/
 ~*
