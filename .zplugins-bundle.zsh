@@ -46,7 +46,6 @@ romkatv/zsh-bench kind:path
 
 # Framework: Oh-My-Zsh#
 ohmyzsh/ohmyzsh path:lib
-ohmyzsh/ohmyzsh path:plugins/autojump
 ohmyzsh/ohmyzsh path:plugins/brew
 ohmyzsh/ohmyzsh path:plugins/colored-man-pages
 ohmyzsh/ohmyzsh path:plugins/colorize
