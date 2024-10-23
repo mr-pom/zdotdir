@@ -5,8 +5,9 @@
 
 # Single character aliases - be sparing!
 alias _=sudo
-alias l=ls
+alias d=docker
 alias g=git
+alias l=ls
 
 # Mask built-ins with better defaults.
 alias vi=vim
