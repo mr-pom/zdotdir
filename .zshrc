@@ -10,6 +10,15 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# Define zsh cache dir.
+ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
+
+# Keep 4096 lines of history within the shell and save it to `.zsh_history`.
+setopt histignorealldups sharehistory
+HISTSIZE=4096
+SAVEHIST=4096
+HISTFILE=${ZDOTDIR:-~}/.zsh_history
+
 # Lazy-load (autoload) Zsh function files from a directory.
 ZFUNCDIR=${ZDOTDIR:-$HOME}/.zfunctions
 fpath=($ZFUNCDIR $fpath)
