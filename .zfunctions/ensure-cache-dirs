@@ -1,0 +1,17 @@
+# Ensure cache directories exist for zsh
+ensure-cache-dirs() {
+  local cache_base="${XDG_CACHE_HOME:-$HOME/.cache}/zsh"
+  local dirs=(
+    "$cache_base"
+    "$cache_base/completions"
+    "$cache_base/sessions"
+    "$cache_base/dumps"
+  )
+
+  for dir in "${dirs[@]}"; do
+    [[ -d "$dir" ]] || mkdir -p "$dir"
+  done
+}
+
+# Run automatically
+ensure-cache-dirs
