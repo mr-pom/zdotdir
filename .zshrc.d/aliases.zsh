@@ -11,7 +11,10 @@ alias l=ls
 
 # Mask built-ins with better defaults.
 alias vi=vim
-alias ls='lsd'
+# Use lsd if available, otherwise keep default ls
+if command -v lsd >/dev/null 2>&1; then
+  alias ls='lsd'
+fi
 
 # Colorize grep.
 alias grep='grep --color=auto -i'
