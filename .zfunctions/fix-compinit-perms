@@ -1,0 +1,74 @@
+# Fix zsh compinit insecure directories and files
+fix-compinit-perms() {
+  # Check if compaudit exists
+  if ! command -v compaudit >/dev/null 2>&1; then
+    echo "⚠️  compaudit command not found"
+    return 1
+  fi
+
+  # Get list of insecure files/directories
+  local insecure_files=($(compaudit 2>/dev/null))
+
+  if [[ ${#insecure_files[@]} -eq 0 ]]; then
+    echo "✅ All completion files have secure permissions"
+    return 0
+  fi
+
+  echo "🔧 Fixing insecure completion directories and files..."
+
+  for file in "${insecure_files[@]}"; do
+    if [[ -d "$file" ]]; then
+      echo "  📁 Securing directory: $file"
+      chmod go-w "$file"
+    elif [[ -f "$file" ]]; then
+      echo "  📄 Securing file: $file"
+      chmod go-w "$file"
+    fi
+  done
+
+  # Also fix common problematic directories
+  local common_dirs=(
+    "/usr/local/share/zsh"
+    "/usr/local/share/zsh/site-functions"
+    "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh"
+    "${HOMEBREW_PREFIX:-/opt/homebrew}/share/zsh/site-functions"
+    "/home/linuxbrew/.linuxbrew/share/zsh"
+    "/home/linuxbrew/.linuxbrew/share/zsh/site-functions"
+  )
+
+  for dir in "${common_dirs[@]}"; do
+    if [[ -d "$dir" ]]; then
+      chmod -R go-w "$dir" 2>/dev/null
+    fi
+  done
+
+  echo "✅ Completion security fix completed"
+}
+
+# Alternative function for manual terminal use
+fix-compinit-manual() {
+  echo "🔍 Checking for insecure completion files..."
+
+  # Run compaudit and check if it has output
+  local audit_output=$(compaudit 2>/dev/null)
+
+  if [[ -z "$audit_output" ]]; then
+    echo "✅ No insecure completion files found"
+    return 0
+  fi
+
+  echo "🔧 Found insecure files, fixing permissions..."
+  echo "$audit_output" | xargs -r chmod g-w,o-w
+
+  # Verify the fix
+  if compaudit >/dev/null 2>&1; then
+    echo "✅ All completion files are now secure"
+  else
+    echo "⚠️  Some issues may remain. Check manually with: compaudit"
+  fi
+}
+
+# Auto-fix on load if needed
+if ! compaudit &>/dev/null; then
+  echo "⚠️  Insecure completion files detected. Run 'fix-compinit-perms' to fix."
+fi
