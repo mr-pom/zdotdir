@@ -14,6 +14,7 @@ fi
 ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 
 # Keep 4096 lines of history within the shell and save it to `.zsh_history`.
+setopt extended_glob
 setopt histignorealldups sharehistory
 HISTSIZE=4096
 SAVEHIST=4096

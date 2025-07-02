@@ -1,6 +1,6 @@
 #!/bin/zsh
 #
-# .zsh_plugins.txt - antidote plugins file
+# .zplugins-bundle.zsh - antidote plugins file
 #
 
 # Completions
