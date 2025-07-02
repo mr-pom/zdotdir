@@ -10,3 +10,7 @@
 zstyle ':antidote:bundle' file ${ZDOTDIR:-~}/.zplugins-bundle.zsh
 zstyle ':antidote:static' file ${ZDOTDIR:-~}/.zplugins.zsh
 zstyle ':antidote:bundle' use-friendly-names 'yes'
+
+# docker plugin config.
+zstyle ':completion:*:*:docker:*' option-stacking yes
+zstyle ':completion:*:*:docker-*:*' option-stacking yes
