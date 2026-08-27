@@ -41,6 +41,10 @@ autoload -Uz $ZFUNCDIR/*(.:t)
 # Set any zstyles you might use for configuration.
 [[ ! -f ${ZDOTDIR:-$HOME}/.zstyles ]] || source ${ZDOTDIR:-$HOME}/.zstyles
 
+# forgit: its alias-name variables must be set BEFORE antidote loads the plugin,
+# otherwise forgit's default aliases are created then shadowed by the omz git plugin.
+[[ ! -f ${ZDOTDIR:-$HOME}/.forgit-config.zsh ]] || source ${ZDOTDIR:-$HOME}/.forgit-config.zsh
+
 # Clone antidote if necessary.
 if [[ ! -d ${ZDOTDIR:-$HOME}/.antidote ]]; then
   git clone https://github.com/mattmc3/antidote ${ZDOTDIR:-$HOME}/.antidote
