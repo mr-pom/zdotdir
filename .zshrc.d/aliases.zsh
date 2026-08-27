@@ -63,7 +63,13 @@ alias urlencode='python3 -c "import sys, urllib.parse as ul; \
     print (ul.quote_plus(sys.argv[1]))"'
 
 # Misc.
+alias ssh-eval='eval "$(ssh-agent -s)"'
 alias please=sudo
 alias zshrc='${EDITOR:-vim} "${ZDOTDIR:-$HOME}"/.zshrc'
 alias zbench='for i in {1..10}; do /usr/bin/time zsh -lic exit; done'
 alias zdot='cd ${ZDOTDIR:-~}'
+
+if [ $UID -ne 0 ]; then
+    alias apt-get='_ apt-get'
+    alias apt='_ apt'
+fi

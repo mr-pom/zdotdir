@@ -36,6 +36,9 @@ djui/alias-tips
 leophys/zsh-plugin-fzf-finder
 lukechilds/zsh-nvm
 
+### Local Plugins
+~/.dracula/zsh-syntax-highlighting kind:zsh conditional:has-dracula-highlighting
+
 # Prompt
 romkatv/powerlevel10k
 
@@ -54,11 +57,11 @@ ohmyzsh/ohmyzsh path:plugins/common-aliases
 ohmyzsh/ohmyzsh path:plugins/docker
 ohmyzsh/ohmyzsh path:plugins/docker-compose
 ohmyzsh/ohmyzsh path:plugins/git
-ohmyzsh/ohmyzsh path:plugins/gpg-agent
+ohmyzsh/ohmyzsh path:plugins/gpg-agent conditional:is-local-session
 ohmyzsh/ohmyzsh path:plugins/jsontools
 ohmyzsh/ohmyzsh path:plugins/pip
 ohmyzsh/ohmyzsh path:plugins/python
-ohmyzsh/ohmyzsh path:plugins/ssh-agent
+ohmyzsh/ohmyzsh path:plugins/ssh-agent conditional:is-local-session
 ohmyzsh/ohmyzsh path:plugins/sudo
 
 # Other Fish-like features

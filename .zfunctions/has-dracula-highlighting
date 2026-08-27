@@ -1,0 +1,3 @@
+#!/bin/zsh
+# True when the local Dracula zsh-syntax-highlighting plugin is present.
+[[ -e ${HOME}/.dracula/zsh-syntax-highlighting ]]
