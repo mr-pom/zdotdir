@@ -17,15 +17,6 @@ ZSH_CACHE_DIR=${XDG_CACHE_HOME:-$HOME/.cache}/zsh
 [[ -d "$ZSH_CACHE_DIR" ]] || mkdir -p "$ZSH_CACHE_DIR"
 [[ -d "$ZSH_CACHE_DIR/completions" ]] || mkdir -p "$ZSH_CACHE_DIR/completions"
 
-# Fix completion security issues automatically
-if command -v compaudit >/dev/null 2>&1 && ! compaudit &>/dev/null; then
-  # Option 1: Auto-fix permissions (recommended)
-  autoload -Uz fix-compinit-perms && fix-compinit-perms
-
-  # Option 2: Skip security check (uncomment if auto-fix doesn't work)
-  # ZSH_DISABLE_COMPFIX=true
-fi
-
 # Keep 4096 lines of history within the shell and save it to `.zsh_history`.
 setopt extended_glob
 setopt histignorealldups sharehistory
@@ -53,6 +44,10 @@ fi
 # Create an amazing Zsh config using antidote plugins.
 source ${ZDOTDIR:-$HOME}/.antidote/antidote.zsh
 antidote load
+
+# Secure completion dirs before ez-compinit runs compinit at the first prompt.
+autoload -Uz compaudit
+compaudit &>/dev/null || fix-compinit-perms
 
 # Source anything in .zshrc.d.
 for _rc in ${ZDOTDIR:-$HOME}/.zshrc.d/*.zsh; do

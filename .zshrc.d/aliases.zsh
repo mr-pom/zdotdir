@@ -5,6 +5,7 @@
 
 # Single character aliases - be sparing!
 alias _=sudo
+alias c=clear
 alias d=docker
 alias g=git
 alias l=ls
